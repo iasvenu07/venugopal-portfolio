@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Venugopal Ummadisetty | Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(15,23,42,0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1000; border-bottom: 1px solid #1e293b;
+    }
+    nav .logo { font-size: 1.3rem; font-weight: 700; color: #38bdf8; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+    nav ul a:hover { color: #38bdf8; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 6rem 2rem 2rem;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(56,189,248,0.1) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    .badge {
+      background: rgba(56,189,248,0.15);
+      border: 1px solid rgba(56,189,248,0.3);
+      color: #38bdf8; padding: 0.4rem 1rem;
+      border-radius: 999px; font-size: 0.8rem;
+      margin-bottom: 1.5rem; display: inline-block;
+    }
+    #hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+    #hero h1 span { color: #38bdf8; }
+    #hero p { color: #94a3b8; max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      padding: 0.75rem 1.8rem; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600;
+      text-decoration: none; transition: all 0.3s; cursor: pointer;
+    }
+    .btn-primary { background: #38bdf8; color: #0f172a; }
+    .btn-primary:hover { background: #0ea5e9; transform: translateY(-2px); }
+    .btn-outline { border: 1px solid #38bdf8; color: #38bdf8; background: transparent; }
+    .btn-outline:hover { background: rgba(56,189,248,0.1); transform: translateY(-2px); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+    h2.section-title {
+      font-size: 2rem; font-weight: 700;
+      margin-bottom: 0.5rem; color: #f1f5f9;
+    }
+    h2.section-title span { color: #38bdf8; }
+    .section-line {
+      width: 50px; height: 3px;
+      background: #38bdf8; margin-bottom: 2.5rem;
+      border-radius: 2px;
+    }
+
+    /* ABOUT */
+    #about .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    #about p { color: #94a3b8; line-height: 1.9; margin-bottom: 1rem; }
+    .info-list { list-style: none; margin-top: 1rem; }
+    .info-list li { color: #94a3b8; margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .info-list li span { color: #38bdf8; font-weight: 600; }
+
+    /* SKILLS */
+    #skills { background: #0f172a; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .skill-card:hover { border-color: #38bdf8; transform: translateY(-4px); }
+    .skill-card h3 { color: #38bdf8; margin-bottom: 1rem; font-size: 1rem; }
+    .skill-tag {
+      display: inline-block; background: rgba(56,189,248,0.1);
+      color: #7dd3fc; border: 1px solid rgba(56,189,248,0.2);
+      padding: 0.25rem 0.7rem; border-radius: 999px;
+      font-size: 0.78rem; margin: 0.25rem;
+    }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 12px; padding: 1.8rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .project-card:hover { border-color: #38bdf8; transform: translateY(-4px); }
+    .project-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .project-card h3 { color: #f1f5f9; margin-bottom: 0.5rem; }
+    .project-card p { color: #94a3b8; font-size: 0.9rem; line-height: 1.7; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tag {
+      background: rgba(56,189,248,0.1); color: #7dd3fc;
+      padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.75rem;
+    }
+
+    /* EXPERIENCE */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: #334155;
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -2.4rem; top: 0.4rem;
+      width: 12px; height: 12px;
+      border-radius: 50%; background: #38bdf8;
+      border: 2px solid #0f172a;
+    }
+    .timeline-item .date {
+      color: #38bdf8; font-size: 0.8rem;
+      font-weight: 600; margin-bottom: 0.3rem;
+    }
+    .timeline-item h3 { color: #f1f5f9; margin-bottom: 0.2rem; }
+    .timeline-item .company { color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .timeline-item p { color: #94a3b8; font-size: 0.9rem; line-height: 1.7; }
+
+    /* CERTIFICATIONS */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .cert-card {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 10px; padding: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      transition: border-color 0.3s;
+    }
+    .cert-card:hover { border-color: #38bdf8; }
+    .cert-icon { font-size: 1.5rem; }
+    .cert-card span { color: #94a3b8; font-size: 0.85rem; }
+
+    /* PUBLICATIONS */
+    .pub-list { list-style: none; }
+    .pub-list li {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 10px; padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem; color: #94a3b8;
+      display: flex; align-items: center; gap: 1rem;
+      transition: border-color 0.3s;
+    }
+    .pub-list li:hover { border-color: #38bdf8; }
+    .pub-list li::before { content: '📄'; font-size: 1.2rem; }
+
+    /* CONTACT */
+    #contact { text-align: center; }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .contact-card {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+    .contact-card:hover { border-color: #38bdf8; transform: translateY(-4px); }
+    .contact-card .icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .contact-card h3 { color: #f1f5f9; margin-bottom: 0.3rem; font-size: 0.95rem; }
+    .contact-card p { color: #94a3b8; font-size: 0.8rem; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid #1e293b;
+      color: #475569; font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      #about .about-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">VU.</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="badge">🎓 M.Tech CSE @ JNTUA Pulivendula</div>
+  <h1>Hi, I'm <span>Venugopal</span><br/>Ummadisetty</h1>
+  <p>
+    Aspiring QA Engineer & GenAI Developer passionate about Python, Cloud Computing,
+    Cybersecurity, and building intelligent, reliable systems that make a real difference.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-outline">Contact Me</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About <span>Me</span></h2>
+  <div class="section-line"></div>
+  <div class="about-grid">
+    <div>
+      <p>
+        I'm a Computer Science & Engineering enthusiast currently pursuing M.Tech at
+        Jawaharlal Nehru Technological University, Pulivendula. My passion for coding
+        defines my journey, especially within the realm of Python programming.
+      </p>
+      <p>
+        I excel in hands-on learning environments, collaborative problem-solving, and
+        pushing boundaries of technical skills. I embrace continuous learning and
+        adaptation as core philosophies.
+      </p>
+    </div>
+    <ul class="info-list">
+      <li>📍 <span>Location:</span> Jammalamadugu, Andhra Pradesh</li>
+      <li>🎓 <span>Degree:</span> M.Tech Computer Science (2024–2026)</li>
+      <li>📧 <span>Email:</span> ugopalv7@gmail.com</li>
+      <li>🏆 <span>Achievement:</span> Technical Quiz Winner</li>
+      <li>☁️ <span>Cloud Tier:</span> Google Cloud Arcade Legend</li>
+      <li>🔐 <span>Certification:</span> Azure Dev Associate</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="section-title">Technical <span>Skills</span></h2>
+  <div class="section-line"></div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h3>☁️ Cloud & Data</h3>
+      <span class="skill-tag">AWS</span>
+      <span class="skill-tag">Google BigQuery</span>
+      <span class="skill-tag">Pub/Sub</span>
+      <span class="skill-tag">Dataflow</span>
+      <span class="skill-tag">Cloud Storage</span>
+      <span class="skill-tag">Cloud Functions</span>
+    </div>
+    <div class="skill-card">
+      <h3>🤖 AI & Machine Learning</h3>
+      <span class="skill-tag">GenAI</span>
+      <span class="skill-tag">LangChain</span>
+      <span class="skill-tag">Prompt Engineering</span>
+      <span class="skill-tag">Google Gemini</span>
+      <span class="skill-tag">RAG</span>
+      <span class="skill-tag">Streamlit</span>
+    </div>
+    <div class="skill-card">
+      <h3>💻 Development</h3>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">HTML/CSS</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">GitHub</span>
+    </div>
+    <div class="skill-card">
+      <h3>🔐 QA & Security</h3>
+      <span class="skill-tag">Manual Testing</span>
+      <span class="skill-tag">Postman</span>
+      <span class="skill-tag">API Testing</span>
+      <span class="skill-tag">Kali Linux</span>
+      <span class="skill-tag">Linux</span>
+      <span class="skill-tag">Cybersecurity</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="section-title">Featured <span>Projects</span></h2>
+  <div class="section-line"></div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-icon">🤖</div>
+      <h3>Multi-PDF RAG Chatbot</h3>
+      <p>
+        An intelligent chatbot leveraging Retrieval-Augmented Generation (RAG) to
+        answer questions from multiple PDF documents simultaneously using LangChain
+        and Streamlit.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">LangChain</span>
+        <span class="project-tag">Streamlit</span>
+        <span class="project-tag">RAG</span>
+        <span class="project-tag">Python</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🏥</div>
+      <h3>Hepatic Disorder Prediction</h3>
+      <p>
+        A machine learning model that anticipates hepatic (liver) disorders using
+        various classification techniques, providing early diagnostic support
+        through predictive analytics.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">ML</span>
+        <span class="project-tag">Classification</span>
+        <span class="project-tag">Healthcare AI</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">☁️</div>
+      <h3>Cloud Data Pipeline</h3>
+      <p>
+        Built integrated data pipelines using Google Cloud Storage, Cloud Functions,
+        Pub/Sub, Dataflow, and BigQuery for streaming analytics and real-time
+        data processing.
+      </p>
+      <div class="project-tags">
+        <span class="project-tag">BigQuery</span>
+        <span class="project-tag">Dataflow</span>
+        <span class="project-tag">Pub/Sub</span>
+        <span class="project-tag">GCP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2 class="section-title">Work <span>Experience</span></h2>
+  <div class="section-line"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="date">November 2025 – January 2026</div>
+      <h3>GenAI Academy 2.0</h3>
+      <div class="company">Google Cloud Skills Boost</div>
+      <p>Google Data Cloud sharing, streaming analytics with Pub/Sub, Dataflow, and BigQuery.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">March 2025 – July 2025</div>
+      <h3>Google Cloud Arcade Facilitator & GenAI Engineer Exchange</h3>
+      <div class="company">Google Cloud Skills Boost · Andhra Pradesh</div>
+      <p>Achieved Arcade Legend Tier. Completed Generative AI Engineer Exchange program.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">March 2024 – November 2024</div>
+      <h3>Subject Matter Expert</h3>
+      <div class="company">Chegg Inc.</div>
+      <p>Provided expert answers and content in Computer Science subjects.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">December 2023 – May 2024</div>
+      <h3>AWS Intern</h3>
+      <div class="company">BrainOVision Solutions India Pvt. Ltd.</div>
+      <p>Hands-on AWS cloud infrastructure, services, and solutions architecture.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">June 2023 – November 2023</div>
+      <h3>Web Development Intern</h3>
+      <div class="company">CodSoft · India</div>
+      <p>Built and deployed web applications using HTML, CSS, JavaScript.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="date">March 2022 – March 2023</div>
+      <h3>Machine Learning with Python</h3>
+      <div class="company">Verzeo</div>
+      <p>Explored ML algorithms, data preprocessing, and model building with Python.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <h2 class="section-title">Certifications & <span>Achievements</span></h2>
+  <div class="section-line"></div>
+  <div class="cert-grid">
+    <div class="cert-card"><div class="cert-icon">☁️</div><span>AWS Solutions Architecture Job Simulation</span></div>
+    <div class="cert-card"><div class="cert-icon">🔐</div><span>Foundations of Cybersecurity</span></div>
+    <div class="cert-card"><div class="cert-icon">⚖️</div><span>Clifford Chance Cyber Security Simulation</span></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><span>Build a Portfolio with Google Sites</span></div>
+    <div class="cert-card"><div class="cert-icon">📊</div><span>Derive Insights from BigQuery Data</span></div>
+    <div class="cert-card"><div class="cert-icon">🏆</div><span>Google Cloud Arcade Legend Tier</span></div>
+    <div class="cert-card"><div class="cert-icon">🔵</div><span>MC Azure Dev Associate</span></div>
+    <div class="cert-card"><div class="cert-icon">🥇</div><span>Technical Quiz Winner</span></div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <h2 class="section-title">Research <span>Publications</span></h2>
+  <div class="section-line"></div>
+  <ul class="pub-list">
+    <li>Multi-PDF RAG Chatbot Using LangChain and Streamlit</li>
+    <li>Anticipating Hepatic Disorder through Machine Learning Classification Techniques</li>
+  </ul>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Get In <span>Touch</span></h2>
+  <div class="section-line" style="margin: 0 auto 2rem;"></div>
+  <p style="color:#94a3b8; max-width:500px; margin: 0 auto 2rem;">
+    Open to opportunities in QA Engineering, GenAI Development, Cloud, and Cybersecurity.
+    Let's connect!
+  </p>
+  <div class="contact-grid" style="max-width:700px; margin: 0 auto;">
+    <a href="mailto:ugopalv7@gmail.com" class="contact-card">
+      <div class="icon">📧</div>
+      <h3>Email</h3>
+      <p>ugopalv7@gmail.com</p>
+    </a>
+    <a href="https://www.linkedin.com/in/ias07" target="_blank" class="contact-card">
+      <div class="icon">💼</div>
+      <h3>LinkedIn</h3>
+      <p>linkedin.com/in/ias07</p>
+    </a>
+    <a href="#" class="contact-card">
+      <div class="icon">📍</div>
+      <h3>Location</h3>
+      <p>Jammalamadugu, AP, India</p>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Venugopal Ummadisetty · Built with ❤️ · All rights reserved</p>
+</footer>
+
+</body>
+</html>
